@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Infinite Scroll</title>
+  <style type="text/css">
+    body {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    .infinite-item,
+    .loading {
+      margin-bottom: 5px;
+      background-color: #1eaedb;
+      color: #fff;
+      text-align: center;
+      padding: 25px 0;
+    }
+
+    .loading {
+      background-color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Infinite Scroll - <small>{% block pagetitle %}{% endblock %}</small></h2>
+  <hr>
+  <a href="https://simpleisbetterthancomplex.com" target="_blank">simpleisbetterthancomplex.com</a>
+  <hr>
+
+
+
+
+
+
+
+
+
+
+  <div class="infinite-container">
+    {% for number in numbers %}
+    <div class="infinite-item">{{ number }}</div>
+    {% endfor %}
+  </div>
+  <div class="loading" style="display: none;">
+    Loading...
+  </div>
+
+  {% if numbers.has_next %}
+  <a class="infinite-more-link" href="?page={{ numbers.next_page_number }}">More</a>
+  {% endif %}
+  <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/infinite.min.js' %}"></script>
+  <script>
+    var infinite = new Waypoint.Infinite({
+      element: $('.infinite-container')[0],
+      onBeforePageLoad: function () {
+        $('.loading').show();
+      },
+      onAfterPageLoad: function ($items) {
+        $('.loading').hide();
+      }
+    });
+  </script>
+
+
+
+
+
+
+</body>
+
+</html>

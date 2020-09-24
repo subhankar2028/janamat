@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/ffef2a64ab.js" crossorigin="anonymous"></script>
+  <title>Exercise 1</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+  <link rel="stylesheet" href="{% static 'indexstyle.css' %}" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="header box">
+    
+      {{firstName}} {{lastName}}
+
+
+
+
+    </div>
+    <div class="sidebar box">
+      <header><i class="fas fa-blog"></i>Blog content</header>
+      <ul>
+        {% for Chellange in Chellange_list %}
+        <li><a href="?Chellange_id={{Chellange.id}}">{{Chellange.ChellangeName}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <section></section>
+    <div class="Chellange Area">
+      {% for topic in topic_list %}
+      <li><a href="#">{{topic.Topic}} : {{topic.TopicDesc}}</a></li>
+      {% endfor %}
+      </br></br>
+      Description
+      <a>{{selected_Chellange.ChellangeDesc}}</a>
+      </br></br>
+      </br></br>
+
+      Comments </br></br>
+      <!-- {{is_logged}} -->
+      {% if is_logged == False %}
+      <!-- Show this block if user is not signed in -->
+      <div class="comments-area">
+        <h4>Leave a Comment</h4>
+        <form method="post" action="contact-post.html">
+          <p>
+            <input type="text" value="Name*" onfocus="this.value = '';"
+              onblur="if (this.value == '') {this.value = 'Name*';}">
+          </p>
+          <p>
+            <input type="text" value="Email *" onfocus="this.value = '';"
+              onblur="if (this.value == '') {this.value = 'Email *';}">
+          </p>
+          <div class="clear"> </div>
+          <div class="text_area">
+            <textarea onfocus="if(this.value == 'Message*') this.value='';"
+              onblur="if(this.value == '') this.value='Message*';">Message*</textarea>
+          </div>
+          <div>
+            <div class="sky_form">
+              <label class="checkbox"><input type="checkbox" name="checkbox"><i>Notify
+                  me of followup comments via e-mail</i></label>
+            </div>
+            <div class="button send_button">
+              <input type="submit" value="Send">
+            </div>
+          </div>
+
+        </form>
+      </div> </br>
+      {% endif %}
+
+      {% for comment in comment_list %}
+      <div class="comments">
+        <div class="c_grid">
+          <div class="person_1">
+            <a href="#"><span> </span></a>
+          </div>
+          <div class="desc">
+            <div class="c_sub_grid">
+              <p><a href="#"> {{comment.user_id}} </a></p>
+              <p><a href="#"> {{comment.created_on}} </a></p>
+              <!-- <h6><a href="#">Reply</a></h6> -->
+              <div class="clear"> </div>
+            </div>
+            <div class="para">
+              <!-- comment.user_id, comment.created_on, comment.message -->
+              <p>{{comment.message}}</p>
+            </div>
+          </div>
+          <div class="clear"> </div>
+        </div>
+      </div> </br>
+      {% endfor %}
+    </div>
+
+    <div class="footer box">Footer</div>
+  </div>
+</body>
+
+</html>

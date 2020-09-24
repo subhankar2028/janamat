@@ -1,0 +1,79 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+* {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+}
+.container {
+  /* Step 1: Set display to grid */
+  /* display: grid; */
+  /* Step 2: setup rows amd columns */
+  /* grid-template-columns: repeat(3, 1fr); */
+  /* grid-template-columns: 100px 300px 300px;
+  grid-template-rows: 100px 600px;
+  grid-template-areas:
+    "hd hd hd hd hd hd hd hd"
+    "sd sd main main main main main main"
+    "ft ft ft ft ft ft ft ft";
+  border: 2px solid yellow; */
+}
+.box {
+  /* width: 250px;
+    height: 150px; */
+  border: 1px solid red;
+  background: #f8fa9d;
+}
+
+.header {
+  /* row start/column start/ row end/ column end */
+  grid-area: hd;
+}
+
+.footer {
+  grid-area: ft;
+}
+.sidebar {
+  position: absolute;
+  width: 250px;
+  background-color: #035aa6;
+  overflow-y: auto;
+}
+.sidebar header {
+  position: relative;
+  margin: 0px;
+  font-size: 25px;
+  color: #dae1e7;
+  text-align: center;
+  line-height: 70px;
+  background: #120136;
+  user-select: none;
+}
+.sidebar ul a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid black;
+  transition: 0.4s;
+}
+ul li:hover a {
+  padding-left: 50px;
+  background: #3282b8;
+}
+.sidebar header i {
+  margin-right: 10px;
+}
+.content {
+  grid-area: main;
+  background-size: contain;
+  background-image: url("2..jpg");
+  background-repeat: no-repeat;
+}

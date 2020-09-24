@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block timeline %}
+
+
+  <div class="infinite-container">
+    {% for content in timeline %}
+    <div class="infinite-item">
+        <p>{{ content.user }}</p>
+        <p>{{ content.date_time }}</p>
+        <p>{{ content.news_header }}</p>
+        <p>{{ content.news }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="loading" style="display: none;">
+    Loading...
+  </div>
+
+  {% if numbers.has_next %}
+  <a class="infinite-more-link" href="/?page={{ numbers.next_page_number }}">More</a>
+  {% endif %}
+  
+
+{% endblock %}
